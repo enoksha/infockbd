@@ -1,26 +1,23 @@
 <!doctype html>
 <html lang="bn">
   <body>
-    <label>NID:</label>
-    <input id="nid" autocomplete="off" />
-    <label>DOB (YYYY-MM-DD):</label>
-    <input id="dob" placeholder="1995-07-14" />
-    <button id="checkBtn">চেক</button>
-
+    <h3>NID টেস্ট ফর্ম</h3>
+    <input id="nid" placeholder="NID" />
+    <input id="dob" placeholder="YYYY-MM-DD" />
+    <button id="check">চেক</button>
     <pre id="out"></pre>
 
     <script>
-      document.getElementById('checkBtn').onclick = async () => {
+      document.getElementById('check').onclick = async () => {
         const nid = document.getElementById('nid').value.trim();
         const dob = document.getElementById('dob').value.trim();
 
         const res = await fetch('/api/check-nid', {
           method: 'POST',
-          headers: {'Content-Type': 'application/json'},
+          headers: {'Content-Type':'application/json'},
           body: JSON.stringify({ nid, dob })
         });
-
-        const data = await res.json().catch(() => ({}));
+        const data = await res.json().catch(()=>({error:'bad json'}));
         document.getElementById('out').textContent = JSON.stringify(data, null, 2);
       };
     </script>
