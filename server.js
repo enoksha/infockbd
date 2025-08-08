@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 
 // শেখার জন্য ডেমো রেসপন্স (সরকারি সাইট না হিট করেও টেস্ট হবে)
-app.post("/api/check-nid", (req, res) => {
+app.post("https://lsg-land-owner.land.gov.bd/check/user/nid/verification", (req, res) => {
   const { nid, dob } = req.body || {};
   if (!nid || !dob) return res.status(400).json({ error: "nid এবং dob দিন" });
   return res.json({
