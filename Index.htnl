@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="bn">
+  <body>
+    <label>NID:</label>
+    <input id="nid" autocomplete="off" />
+    <label>DOB (YYYY-MM-DD):</label>
+    <input id="dob" placeholder="1995-07-14" />
+    <button id="checkBtn">চেক</button>
+
+    <pre id="out"></pre>
+
+    <script>
+      document.getElementById('checkBtn').onclick = async () => {
+        const nid = document.getElementById('nid').value.trim();
+        const dob = document.getElementById('dob').value.trim();
+
+        const res = await fetch('/api/check-nid', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ nid, dob })
+        });
+
+        const data = await res.json().catch(() => ({}));
+        document.getElementById('out').textContent = JSON.stringify(data, null, 2);
+      };
+    </script>
+  </body>
+</html>
