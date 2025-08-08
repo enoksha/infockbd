@@ -10,7 +10,7 @@ app.post("/api/check-nid", (req, res) => {
   return res.json({
     ok: true,
     received: { nid, dob },
-    demo: "এখানে পরে আসল API কল বসাবেন"
+    demo: "https://lsg-land-owner.land.gov.bd/check/user/nid/verification"
   });
 });
 
